@@ -2,6 +2,8 @@ package control;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
+
 import modelo.Libro;
 import modelo.dao.Examen;
 public class Main {
@@ -23,8 +25,28 @@ public class Main {
 				
 			}
 	   }
+	   System.out.println("\nEjercicio 2: Muestra los movimientos de las cuentas: -----------------------------------------------------------\n");
+	   System.out.println("Evaluación de ficheros \n");
+	   examen.validarFicheroCuentas("ficheros/cuentas.txt", "&");
+	   examen.validarFicheroMovimientos("ficheros/movimientos.txt", "&");
+	   
+	   System.out.println("\nRealización de ejercicio\n");
+	   examen.muestraCuentas("ficheros/cuentas.txt", "&");
+	   System.out.println("----------------------------------------------------------------------------------------------------------------");
+
+
 		//examen.ejercicio2("ficheros/movimientos.txt");
-		//HashMap<Integer, ArrayList<Libro>> librosTemas = examen.getLibrosPorTemas();
+		HashMap<Integer, ArrayList<Libro>> librosTemas = examen.getLibrosPorTemas();
+		
+		Set<Integer> clavesMapa = librosTemas.keySet();
+		
+		for (Integer claves: clavesMapa) {
+			System.out.println("\nLibros del tema: " + claves);
+			for (int i = 0; i < librosTemas.get(claves).size(); i++) {
+				System.out.println("Id: [" + librosTemas.get(claves).get(i).getId() + "] Tema: [" + librosTemas.get(claves).get(i).getTema()
+						+ "] Título: [" + librosTemas.get(claves).get(i).getTitulo() + "]");
+			}
+		}
 		System.out.println("FIN");
 	}
 }
